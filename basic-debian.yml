@@ -1,5 +1,6 @@
 - name: Basic Debian Installation
   hosts: fuckup.luxeria.ch
+  sudo: True
 
   tasks:
     - name: Install basic software
@@ -56,4 +57,3 @@
       service: name=systemd-timesyncd state=restarted
     - name: restart sshd
       service: name=sshd state=restarted
-  sudo: True
