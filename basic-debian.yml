@@ -1,0 +1,59 @@
+- name: Basic Debian Installation
+  hosts: fuckup.luxeria.ch
+
+  tasks:
+    - name: Install basic software
+      apt: name={{ item }}
+      with_items:
+        - ack-grep
+        - cifs-utils
+        - renameutils
+        - git
+        - convmv
+        - curl
+        - haveged
+        - htop
+        - rsync
+        - sysstat
+        - tmux
+        - unzip
+        - vim
+
+    - name: Add users
+      user: name=emanuel shell=/bin/bash state=present
+
+    - name: motd file
+      template: src=templates/motd.j2 dest=/etc/motd owner=root group=root mode=0644
+
+    - name: systemd-timesyncd
+      service: name=systemd-timesyncd state=started enabled=yes
+    - name: systemd-timesyncd configuration file
+      template: src=templates/timesyncd.conf.j2 dest=/etc/systemd/timesyncd.conf owner=root group=root mode=0644
+      notify: restart systemd-timesyncd
+
+    - name: sshd configuration file
+      template: src=templates/sshd_config.j2 dest=/etc/ssh/sshd_config
+        owner=root group=root mode=0644
+        validate='/usr/sbin/sshd -T -f %s'
+      notify: restart sshd
+    - name: Install fail2ban
+      apt: name=fail2ban state=present
+
+    - name: Install Monitoring tools
+      apt: name={{ item }}
+      with_items:
+        - logwatch
+        - logcheck
+    - name: Install Munin-Node # irgendwo noch munin als master
+      apt: name={{ item }}
+      with_items:
+        - munin-node
+        - smartmontools
+        - ipmitool
+
+  handlers:
+    - name: restart systemd-timesyncd
+      service: name=systemd-timesyncd state=restarted
+    - name: restart sshd
+      service: name=sshd state=restarted
+  sudo: True
