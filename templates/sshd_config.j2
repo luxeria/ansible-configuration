@@ -25,7 +25,7 @@ AcceptEnv LANG LC_*
 LoginGraceTime 2m
 UsePrivilegeSeparation sandbox
 
-X11Forwarding yes
+X11Forwarding no
 Subsystem sftp /usr/lib/openssh/sftp-server
 
 UsePAM yes
@@ -35,7 +35,7 @@ PermitRootLogin without-password
 PermitEmptyPasswords no
 PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
-#PasswordAuthentication no
+PasswordAuthentication no
 ChallengeResponseAuthentication no
 
 AllowUsers {{ ssh_allow_users }}
