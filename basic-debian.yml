@@ -7,7 +7,6 @@
       apt: name={{ item }}
       with_items:
         - ack-grep
-        - cifs-utils
         - renameutils
         - git
         - convmv
