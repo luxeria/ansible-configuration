@@ -22,6 +22,16 @@
     - name: Add users
       user: name=emanuel shell=/bin/bash state=present
 
+    - name: Install ufw firewall
+      apt: name=ufw state=present
+    - name: Set firewall default policy
+      ufw: state=enabled
+    - name: Allow SSH
+      ufw: rule=allow port=22 proto=tcp
+    - name: Configure Firewall
+      ufw: rule=allow port={{item.port}} proto={{item.proto}}
+      with_items: "{{ ufw_allow_in }}"
+
     - name: motd file
       template: src=templates/motd.j2 dest=/etc/motd owner=root group=root mode=0644
 
@@ -53,6 +63,9 @@
         - munin-node
         - smartmontools
         - ipmitool
+    - name: Allow Munin
+      ufw: rule=allow port=4949 proto=tcp
+
 
   handlers:
     - name: restart systemd-timesyncd
