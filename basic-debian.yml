@@ -49,8 +49,10 @@
         owner=root group=root mode=0644
         validate='/usr/sbin/sshd -T -f %s'
       notify: restart sshd
-    - name: Install fail2ban
-      apt: name=fail2ban state=present
+    - name: Install sshguard
+      apt: name=sshguard state=present
+    - name: Start and enable sshguard
+      service: name=sshguard state=started enabled=yes
 
     - name: Install Monitoring tools
       apt: name={{ item }}
