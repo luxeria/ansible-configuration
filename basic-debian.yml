@@ -67,7 +67,20 @@
         - ipmitool
     - name: Allow Munin
       ufw: rule=allow port=4949 proto=tcp
-
+    - name: Enable some plugins
+      file: src=/usr/share/munin/plugins/{{ item.src }} dest=/etc/munin/plugins/{{ item.dest }} state=link
+      with_items:
+        - { src: 'apt', dest: 'apt' }
+        - { src: 'apt_all', dest: 'apt_all' }
+        - { src: 'iostat', dest: 'iostat' }
+        - { src: 'iostat_ios', dest: 'iostat_ios' }
+        - { src: 'ping_', dest: 'ping_speedtest.net' }
+        - { src: 'port_', dest: 'port_ssh' }
+        - { src: 'ps_', dest: 'ps_sshd' }
+        - { src: 'threads', dest: 'threads' }
+    - name: Monitor connection count of allowed firewall ports
+      file: src=/usr/share/munin/plugins/port_ dest=/etc/munin/plugins/port_{{ item.port }} state=link
+      with_items: "{{ ufw_allow_in }}"
 
   handlers:
     - name: restart systemd-timesyncd
