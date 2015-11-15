@@ -78,12 +78,17 @@
         - { src: 'port_', dest: 'port_ssh' }
         - { src: 'ps_', dest: 'ps_sshd' }
         - { src: 'threads', dest: 'threads' }
+      notify: restart munin-node
     - name: Monitor connection count of allowed firewall ports
       file: src=/usr/share/munin/plugins/port_ dest=/etc/munin/plugins/port_{{ item.port }} state=link
       with_items: "{{ ufw_allow_in }}"
+      notify: restart munin-node
+
 
   handlers:
     - name: restart systemd-timesyncd
       service: name=systemd-timesyncd state=restarted
     - name: restart sshd
       service: name=sshd state=restarted
+    - name: restart munin-node
+      service: name=munin-node state=restarted
