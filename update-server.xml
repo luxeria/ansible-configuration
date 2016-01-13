@@ -1,0 +1,7 @@
+- hosts: debian-servers
+  sudo: true
+  tasks:
+   - name: Update server
+     apt: update_cache=yes
+   - name: Upgrade server
+     apt: upgrade=full
