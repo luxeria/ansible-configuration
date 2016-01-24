@@ -18,9 +18,11 @@
         - tmux
         - unzip
         - vim
+        - mosh
 
     - name: Add users
-      user: name=emanuel shell=/bin/bash state=present
+      user: name={{item.name}} shell=/bin/bash state=present
+      with_items: "{{ users }}"
 
     - name: Install ufw firewall
       apt: name=ufw state=present
