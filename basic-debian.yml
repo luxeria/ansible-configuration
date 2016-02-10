@@ -35,9 +35,6 @@
       template: src=templates/timesyncd.conf.j2 dest=/etc/systemd/timesyncd.conf owner=root group=root mode=0644
       notify: restart systemd-timesyncd
 
-    - name: haveged
-      service: name=haveged state=started enabled=yes
-
     - name: sshd configuration file
       template: src=templates/sshd_config.j2 dest=/etc/ssh/sshd_config
         owner=root group=root mode=0644
@@ -77,7 +74,6 @@
       file: src=/usr/share/munin/plugins/port_ dest=/etc/munin/plugins/port_{{ item.port }} state=link
       with_items: "{{ ufw_allow_in }}"
       notify: restart munin-node
-
 
   handlers:
     - name: restart systemd-timesyncd
