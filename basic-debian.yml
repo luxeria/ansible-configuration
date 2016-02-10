@@ -1,7 +1,6 @@
 - name: Basic Debian Installation
-  hosts: fuckup.luxeria.ch
   sudo: True
-
+  hosts: debian
   tasks:
     - name: Install basic software
       apt: name={{ item }}
