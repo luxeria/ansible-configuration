@@ -5,19 +5,12 @@
     - name: Install basic software
       apt: name={{ item }}
       with_items:
-        - ack-grep
-        - renameutils
-        - git
-        - convmv
-        - curl
-        - haveged
-        - htop
         - rsync
         - sysstat
+        - htop
         - tmux
-        - unzip
         - vim
-        - mosh
+        - ufw
 
     - name: Add users
       user: name={{item.name}} shell=/bin/bash state=present
