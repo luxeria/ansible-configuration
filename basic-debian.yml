@@ -16,6 +16,10 @@
       user: name={{item.name}} shell=/bin/bash groups={{item.groups}} state=present
       with_items: "{{ users }}"
 
+    - name: Install public key only if available
+      authorized_key: user={{item.name}} key="{{ lookup('file', 'files/ssh_keys/{{item.ssh_key}}') }}"
+      with_items: "{{ users }}"
+
     - name: sudo configuration
       lineinfile: dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL:ALL) NOPASSWD:ALL' validate='visudo -cf %s'
 
