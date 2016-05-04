@@ -1,7 +1,16 @@
 [switzerland]
 caturix.luxeria.ch
+debian-template.luxeria.ch
+esus.luxeria.ch
+fedelm.luxeria.ch
 fuckup.luxeria.ch
 
 [debian]
 caturix.luxeria.ch
+debian-template.luxeria.ch
+esus.luxeria.ch
+fedelm.luxeria.ch
+fuckup.luxeria.ch
+
+[backup]
 fuckup.luxeria.ch
