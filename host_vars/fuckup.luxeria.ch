@@ -1,7 +1,8 @@
 ---
-ssh_allow_users: emanuel nick
+responsible: emanuel
+ssh_allow_users: rsnapshot emanuel nick
 ufw_allow_in:
   - { port: 1194, proto: "udp" }
 users:
-  - { name: "emanuel" }
-  - { name: "nick" }
+  - { name: "emanuel", groups: "sudo", ssh_key: "emanuel.pub" }
+  - { name: "nick", groups: "" , ssh_key: "nick.pub" }
