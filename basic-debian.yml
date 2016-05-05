@@ -11,6 +11,7 @@
         - tmux
         - vim
         - ufw
+        - mosh
 
     - name: Add users
       user: name={{item.name}} shell=/bin/bash groups={{item.groups}} state=present
@@ -29,6 +30,8 @@
       ufw: state=enabled
     - name: Allow SSH
       ufw: rule=allow port=22 proto=tcp
+    - name: Allow mosh
+      ufw: rule=allow port=60000:61000 proto=udp
     - name: Configure Firewall
       ufw: rule=allow port={{item.port}} proto={{item.proto}}
       with_items: "{{ ufw_allow_in }}"
