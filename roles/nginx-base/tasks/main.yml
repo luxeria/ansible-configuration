@@ -1,0 +1,21 @@
+---
+- name: Add nginx repository key
+  apt_key: url=http://nginx.org/keys/nginx_signing.key
+
+- name: Add official nginx repository
+  apt_repository: repo='{{item}} {{ansible_distribution_release}} nginx'
+  with_items:
+   - 'deb http://nginx.org/packages/debian/'
+   - 'deb-src http://nginx.org/packages/debian/'
+
+# the following installs the nginx binary and creates the 'nginx' user
+- name: Install nginx
+  apt: name=nginx=1.10.* state=present update_cache=yes
+
+# overwrite the installed configuration files with our own defaults
+- name: Write nginx files
+  template: src={{item.src}} dest={{item.dest}}
+  with_items:
+   - { src: 'nginx.conf',   dest: '/etc/nginx/nginx.conf' }
+   - { src: 'default.conf', dest: '/etc/nginx/conf.d/default.conf' }
+  notify: reload nginx
