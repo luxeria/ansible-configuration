@@ -8,7 +8,6 @@
    - 'deb http://packages.dotdeb.org'
    - 'deb-src http://packages.dotdeb.org'
 
-# the following installs the nginx binary and creates the 'nginx' user
 - name: Install nginx
   apt: name=nginx-light=1.8.* state=present update_cache=yes
 
