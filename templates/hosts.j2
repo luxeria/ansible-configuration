@@ -3,10 +3,15 @@
 # Ansible managed
 #
 
-127.0.0.1 localhost
-127.0.1.1 {{ ansible_fqdn }} {{ ansible_hostname }}
+# Localhost
+127.0.0.1  localhost.localdomain localhost
+::1        localhost ip6-localhost ip6-loopback
 
-# Luxeria Hosts
+# IPv6
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# Luxeria
 10.10.0.101    aventia.luxeria.ch             aventia
 10.10.0.102    barrex.luxeria.ch              barrex
 10.10.0.10     caturix.luxeria.ch             caturix
@@ -16,9 +21,3 @@
 10.10.0.105    esus.luxeria.ch                esus
 10.10.0.106    fedelm.luxeria.ch              fedelm
 10.10.0.150    poentius.luxeria.ch            poentius
-
-# The following lines are desirable for IPv6 capable hosts
-::1     localhost ip6-localhost ip6-loopback
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-
