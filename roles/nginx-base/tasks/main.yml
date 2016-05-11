@@ -14,5 +14,7 @@
 
 # overwrite the installed configuration files with our own defaults
 - name: Write static nginx files
-  synchronize: src=nginx dest=/etc/ recursive=yes delete=yes archive=no checksum=yes rsync_opts="--exclude=*~"
+  synchronize: > 
+    src=nginx dest=/etc/ recursive=yes delete=yes
+    archive=no checksum=yes rsync_opts="--exclude=*~"
   notify: reload nginx
