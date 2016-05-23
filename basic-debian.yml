@@ -49,6 +49,16 @@
       template: src=templates/timesyncd.conf.j2 dest=/etc/systemd/timesyncd.conf owner=root group=root mode=0644
       notify: restart systemd-timesyncd
 
+    - name: automatic updates
+      apt: name={{ item }}
+      with_items:
+        - apt-listchanges
+        - unattended-upgrades
+    - name: Configuration for automatic updates
+      copy: src=files/etc/apt/apt.conf.d/50unattended-upgrades dest=/etc/apt/apt.conf.d/50unattended-upgrades owner=root group=root mode=0644
+    - name: Configuration for automatic updates
+      copy: src=files/etc/apt/apt.conf.d/20auto-upgrades dest=/etc/apt/apt.conf.d/20auto-upgrades owner=root group=root mode=0644
+
     - name: sshd configuration file
       template: src=templates/sshd_config.j2 dest=/etc/ssh/sshd_config
         owner=root group=root mode=0644
