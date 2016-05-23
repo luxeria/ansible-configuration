@@ -1,4 +1,5 @@
 ---
+description: Host für VMs
 responsible: emanuel, guac, peanut
 ssh_allow_users: emanuel guac peanut
 users:

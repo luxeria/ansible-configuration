@@ -1,4 +1,5 @@
 ---
+description: Reverse Proxy
 responsible: gandro
 ssh_allow_users: emanuel guac peanut gandro nick
 users:

@@ -1,4 +1,5 @@
 ---
+description: Template für weitere VMS
 responsible: emanuel, guac, peanut
 ssh_allow_users: emanuel guac peanut
 users:

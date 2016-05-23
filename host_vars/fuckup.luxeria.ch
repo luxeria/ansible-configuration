@@ -1,4 +1,5 @@
 ---
+description: Mänus private Büchse
 responsible: emanuel
 ssh_allow_users: rsnapshot emanuel nick
 ufw_allow_in:
