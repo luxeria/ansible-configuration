@@ -1,0 +1,6 @@
+---
+- hosts: debian
+  become: yes
+  roles:
+    - common
+    - monitoring

@@ -1,0 +1,38 @@
+---
+- name: Install monitoring tools
+  apt: name={{ item }}
+  with_items:
+    - logwatch
+    - logcheck
+
+- name: Install munin-node
+  apt: name={{ item }}
+  with_items:
+    - munin-node
+    - smartmontools
+    - ipmitool
+
+- name: Configure munin-node
+  copy: src=files/munin-node.conf dest=/etc/munin/munin-node.conf owner=root group=root mode=0644
+  notify: restart munin-node
+
+- name: Configure munin-node firewall rule
+  ufw: rule=allow port=4949 proto=tcp
+
+- name: Enalble munin plugins
+  file: src=/usr/share/munin/plugins/{{ item.src }} dest=/etc/munin/plugins/{{ item.dest }} state=link
+  with_items:
+    - { src: 'apt', dest: 'apt' }
+    - { src: 'apt_all', dest: 'apt_all' }
+    - { src: 'iostat', dest: 'iostat' }
+    - { src: 'iostat_ios', dest: 'iostat_ios' }
+    - { src: 'ping_', dest: 'ping_speedtest.net' }
+    - { src: 'port_', dest: 'port_ssh' }
+    - { src: 'ps_', dest: 'ps_sshd' }
+    - { src: 'threads', dest: 'threads' }
+  notify: restart munin-node
+
+- name: Enable munin plugins for firewall rules
+  file: src=/usr/share/munin/plugins/port_ dest=/etc/munin/plugins/port_{{ item.port }} state=link
+  with_items: "{{ ufw_allow_in }}"
+  notify: restart munin-node
