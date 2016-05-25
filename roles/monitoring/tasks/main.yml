@@ -5,6 +5,9 @@
     - logwatch
     - logcheck
 
+- name: Install additional logcheck rules
+  copy: src=files/luxeria_logcheck dest=/etc/logcheck/ignore.d.server/luxeria_logcheck owner=root group=root mode=0644
+
 - name: Install munin-node
   apt: name={{ item }}
   with_items:
@@ -36,3 +39,6 @@
   file: src=/usr/share/munin/plugins/port_ dest=/etc/munin/plugins/port_{{ item.port }} state=link
   with_items: "{{ ufw_allow_in }}"
   notify: restart munin-node
+
+- name: Fix apt_all munin plugin
+  lineinfile: dest=/etc/munin/plugins/apt_all state=present regexp='^my @releases = \("stable".*\);$' line='my @releases = ("stable");'
