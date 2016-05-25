@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/usr/bin/env bash
 # Author: gandro
 # Reviewed: mindfuckup
 set -eu

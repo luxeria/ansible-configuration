@@ -13,6 +13,8 @@
 
 - name: Remove unmanaged config files
   script: nginx-rmdefault.sh
+  register: script_result
+  changed_when: "script_result.stdout"
 
 - name: Copy nginx configuration files
   template: src={{item.src}} dest={{item.dest}}
