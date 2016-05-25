@@ -20,3 +20,4 @@
    - { src: 'nginx.conf',   dest: '/etc/nginx/nginx.conf' }
    - { src: 'mime.types',   dest: '/etc/nginx/mime.types' }
    - { src: 'default.conf', dest: '/etc/nginx/conf.d/default.conf' }
+  notify: reload nginx
