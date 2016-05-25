@@ -1,0 +1,6 @@
+#
+# Additional logcheck rules for the servers @ LuXeria
+#
+
+# systemd-timesyncd
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-timesyncd\[[[:digit:]]+\]: interval/delta/delay/jitter/drift ([0-9\.+]+s/){4}\+[0-9]+ppm( ?\(ignored\))?$
