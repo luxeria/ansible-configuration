@@ -1,0 +1,8 @@
+---
+- name: Install and configure nginx with PHP
+  hosts: fedelm.luxeria.ch
+  become: yes
+
+  roles:
+    - nginx-base
+    - nginx-php

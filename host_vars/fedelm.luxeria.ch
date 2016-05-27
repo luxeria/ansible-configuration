@@ -10,3 +10,4 @@ users:
   - { name: "nick", groups: "sudo", ssh_key: "nick.pub" }
 ufw_allow_in:
   - { port: 80, proto: "tcp" }
+nginx_default_conf: "fedelm.conf"

@@ -1,5 +1,5 @@
 ---
-- name: Install and configure the web proxy
+- name: Install and configure the nginx reverse proxy
   hosts: esus.luxeria.ch
   become: yes
 
