@@ -1,0 +1,21 @@
+---
+- name: Create 'acmetiny' user
+  user: >
+    name=acmetiny shell=/usr/sbin/nologin home=/etc/acmetiny
+    system=yes createhome=no
+
+# generate Let's Encrypt account key
+- include: genkey.yml
+  vars:
+    path: "/etc/acmetiny/account.key"
+    owner: "root"
+    group: "acmetiny"
+    mode: "0640"
+
+# generate SSL private key
+- include: genkey.yml
+  vars:
+    path: "/etc/ssl/private/letsencrypt.key"
+    owner: "root"
+    group: "root"
+    mode: "0600"

@@ -1,0 +1,17 @@
+- name: Check for private key {{path}}
+  stat: path="{{path}}"
+  register: private_key
+
+- name: Ensure correct permissions for {{path}}
+  file: >
+    path="{{path}}" state=touch
+    owner="{{owner}}" group="{{group}}" mode="{{mode}}"
+  when: >
+    not private_key.stat.exists or
+    private_key.stat.pw_name != '{{owner}}' or
+    private_key.stat.gr_name != '{{group}}' or
+    private_key.stat.mode    != '{{mode}}'
+
+- name: Generate {{path}}
+  shell: /usr/bin/openssl genrsa 4096 > "{{path}}"
+  when: not private_key.stat.exists or private_key.stat.size == 0
