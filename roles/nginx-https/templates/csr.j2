@@ -1,0 +1,32 @@
+[req]
+distinguished_name = req_distinguished_name
+req_extensions = v3_req
+prompt = no
+
+[req_distinguished_name]
+{% if 'country' in nginx_https_cert %}
+C =  {{ nginx_https_cert.country }}
+{% endif %}
+{% if 'state' in nginx_https_cert %}
+ST = {{ nginx_https_cert.state }}
+{% endif %}
+{% if 'location' in nginx_https_cert %}
+L =  {{ nginx_https_cert.location }}
+{% endif %}
+{% if 'organization' in nginx_https_cert %}
+O =  {{ nginx_https_cert.organization }}
+{% endif %}
+{% if 'organizational_unit' in nginx_https_cert %}
+OU = {{ nginx_https_cert.organizational_unit }}
+{% endif %}
+CN = {{ nginx_https_cert.common_name }}
+
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment, digitalSignature
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+
+[alt_names]
+{% for alt_name in [nginx_https_cert.common_name] + nginx_https_cert.get('alt_names', []) %}
+DNS.{{ loop.index }} = {{ alt_name }}
+{% endfor %}

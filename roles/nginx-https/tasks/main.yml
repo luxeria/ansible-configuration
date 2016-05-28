@@ -4,6 +4,11 @@
     name=acmetiny shell=/usr/sbin/nologin home=/etc/acmetiny
     system=yes createhome=no
 
+- name: Create /etc/acmetiny
+  file: >
+    path=/etc/acmetiny/challenges state=directory recurse=yes
+    owner=root group=acmetiny mode=0775
+
 # generate Let's Encrypt account key
 - include: genkey.yml
   vars:
@@ -19,3 +24,21 @@
     owner: "root"
     group: "root"
     mode: "0600"
+
+- name: Generate CSR config file
+  template: src=csr.j2 dest=/etc/acmetiny/openssl.cnf
+  notify: generate csr
+
+# ensure CSR is generated
+- meta: flush_handlers
+
+- name: Generate self-signed initial nginx certificate
+  command: >
+    /usr/bin/openssl x509
+    -in /etc/acmetiny/letsencrypt.csr
+    -out /etc/acmetiny/letsencrypt.pem
+    -req -signkey /etc/ssl/private/letsencrypt.key -days 30
+
+- name: Copy nginx HTTPS configuration file
+  copy: src=https.conf dest=/etc/nginx/https.conf
+  notify: reload nginx
