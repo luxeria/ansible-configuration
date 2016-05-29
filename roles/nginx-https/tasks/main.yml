@@ -27,10 +27,15 @@
 
 - name: Generate CSR config file
   template: src=csr.j2 dest=/etc/acmetiny/openssl.cnf
-  notify: generate csr
+  register: csr_config
 
-# ensure CSR is generated
-- meta: flush_handlers
+- name: Generate Certificate Signing Request
+  command: >
+    /usr/bin/openssl req -new
+    -out /etc/acmetiny/letsencrypt.csr
+    -key /etc/ssl/private/letsencrypt.key
+    -config /etc/acmetiny/openssl.cnf
+  when: csr_config.changed
 
 - name: Generate self-signed initial nginx certificate
   command: >
@@ -38,7 +43,9 @@
     -in /etc/acmetiny/letsencrypt.csr
     -out /etc/acmetiny/letsencrypt.pem
     -req -signkey /etc/ssl/private/letsencrypt.key -days 30
+  args:
+    creates: /etc/acmetiny/letsencrypt.pem
 
 - name: Copy nginx HTTPS configuration file
-  copy: src=https.conf dest=/etc/nginx/https.conf
+  copy: src=https.conf dest=/etc/nginx/site.d/https.conf
   notify: reload nginx

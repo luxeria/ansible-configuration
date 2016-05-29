@@ -1,8 +1,3 @@
 ---
 - name: reload nginx
   service: name=nginx state=reloaded enabled=yes
-
-- name: undo nginx postinst
-  script: nginx-undo-postinst.sh
-  register: script_result
-  changed_when: "script_result.stdout"

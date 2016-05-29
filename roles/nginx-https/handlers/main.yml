@@ -1,7 +1,0 @@
----
-- name: generate csr
-  command: >
-    /usr/bin/openssl req -new
-    -out /etc/acmetiny/letsencrypt.csr
-    -key /etc/ssl/private/letsencrypt.key
-    -config /etc/acmetiny/openssl.cnf

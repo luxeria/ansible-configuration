@@ -9,5 +9,5 @@
   template: src={{item.src}} dest={{item.dest}}
   with_items:
    - { src: 'fastcgi.conf', dest: '/etc/nginx/fastcgi.conf' }
-   - { src: 'php7.conf',    dest: '/etc/nginx/php7.conf' }
+   - { src: 'php7.conf',    dest: '/etc/nginx/site.d/php7.conf' }
   notify: reload nginx

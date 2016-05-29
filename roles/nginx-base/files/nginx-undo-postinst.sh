@@ -31,6 +31,3 @@ if [[ -d "${configdir}" ]] ; then
     # Remove all empty directories
     find /etc/nginx -type d -empty -delete -printf "Removing %p\n"
 fi
-
-# Recreate configuration directory
-mkdir -p "${configdir}/conf.d"

@@ -12,6 +12,17 @@
   apt: name=nginx-light=1.8.* state=present update_cache=yes
   notify: undo nginx postinst
 
+- name: Undo nginx `postinst` configuration
+  script: nginx-undo-postinst.sh
+  register: script_result
+  changed_when: "script_result.stdout"
+
+- name: Create /etc/nginx subdirectories
+  file: path={{item}} state=directory
+  with_items:
+    - /etc/nginx/conf.d
+    - /etc/nginx/site.d
+
 - name: Copy nginx configuration files
   template: src={{item.src}} dest={{item.dest}}
   with_items:
