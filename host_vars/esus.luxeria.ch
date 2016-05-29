@@ -11,7 +11,6 @@ users:
 ufw_allow_in:
   - { port: 80, proto: "tcp" }
   - { port: 443, proto: "tcp" }
-nginx_default_conf: "esus.conf"
 nginx_https_cert:
   country: "CH"
   state: "Luzern"
