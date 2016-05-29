@@ -1,0 +1,8 @@
+[Unit]
+Description=Renew our Let's Encrypt certificate using acme-tiny
+Requires=network-online.target
+
+
+[Service]
+Type=oneshot
+ExecStart=/etc/acmetiny/acmetiny_renew.sh

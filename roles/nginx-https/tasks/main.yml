@@ -20,7 +20,7 @@
 # generate SSL private key
 - include: genkey.yml
   vars:
-    path: "/etc/ssl/private/letsencrypt.key"
+    path: "/etc/ssl/private/nginx.key"
     owner: "root"
     group: "root"
     mode: "0600"
@@ -33,7 +33,7 @@
   command: >
     /usr/bin/openssl req -new
     -out /etc/acmetiny/letsencrypt.csr
-    -key /etc/ssl/private/letsencrypt.key
+    -key /etc/ssl/private/nginx.key
     -config /etc/acmetiny/openssl.cnf
   when: csr_config.changed
 
@@ -41,10 +41,37 @@
   command: >
     /usr/bin/openssl x509
     -in /etc/acmetiny/letsencrypt.csr
-    -out /etc/acmetiny/letsencrypt.pem
-    -req -signkey /etc/ssl/private/letsencrypt.key -days 30
+    -out /etc/ssl/nginx.pem
+    -req -signkey /etc/ssl/private/nginx.key -days 30
   args:
-    creates: /etc/acmetiny/letsencrypt.pem
+    creates: /etc/ssl/nginx.pem
+
+- name: Download acme_tiny.py
+  get_url: >
+    url=https://github.com/diafygi/acme-tiny/raw/{{acmetiny_rev}}/acme_tiny.py
+    dest=/etc/acmetiny/acme_tiny.py mode=0755
+
+- name: Download Let's Encrypt intermediate certificate
+  get_url:
+    url=https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem
+    dest=/etc/ssl/letsencrypt-x3.pem mode=0644
+
+- name: Install acmetiny_renew.sh
+  copy: >
+    src=acmetiny_renew.sh
+    dest=/etc/acmetiny/acmetiny_renew.sh
+    mode=0755
+
+- name: Install acmetiny systemd timer unit
+  copy: src={{item}} dest=/etc/systemd/system/{{item}}
+  register: acmetiny_service
+  with_items:
+    - acmetiny.service
+    - acmetiny.timer
+
+- name: Reload systemd deamon
+  command: /bin/systemctl daemon-reload
+  when: acmetiny_service.changed
 
 - name: Copy nginx HTTPS configuration file
   copy: src=https.conf dest=/etc/nginx/site.d/https.conf
