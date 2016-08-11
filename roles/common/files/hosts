@@ -4,12 +4,12 @@
 #
 
 # Localhost
-127.0.0.1  localhost.localdomain localhost
-::1        localhost ip6-localhost ip6-loopback
+127.0.0.1      localhost.localdomain localhost
+::1            localhost ip6-localhost ip6-loopback
 
 # IPv6
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
+ff02::1        ip6-allnodes
+ff02::2        ip6-allrouters
 
 # Luxeria
 10.10.0.101    aventia.luxeria.ch             aventia
@@ -17,8 +17,11 @@ ff02::2 ip6-allrouters
 10.10.0.10     caturix.luxeria.ch             caturix
 10.10.0.103    coel.luxeria.ch                coel
 10.10.0.100    debian8-template.luxeria.ch    debian8-template
+10.10.0.100    debian-template.luxeria.ch     debian-template
 10.10.0.104    divanno.luxeria.ch             divanno
 10.10.0.105    esus.luxeria.ch                esus
 10.10.0.106    fedelm.luxeria.ch              fedelm
+10.10.0.107    galates.luxeria.ch             galates
+10.10.0.108    intarabus.luxeria.ch           intarabus
 10.10.0.150    poentius.luxeria.ch            poentius
 194.29.23.94   fuckup.luxeria.ch              fuckup
