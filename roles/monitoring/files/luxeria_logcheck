@@ -2,5 +2,18 @@
 # Additional logcheck rules for the servers @ LuXeria
 #
 
-# systemd-timesyncd
+# Systemd-Timesyncd
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-timesyncd\[[[:digit:]]+\]: interval/delta/delay/jitter/drift ([0-9\.+-]+s/){4}\+[0-9]+ppm( ?\(ignored\))?$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-timesyncd\[[[:digit:]]+\]: interval/delta/delay/jitter/drift .*$
+
+# Rsyslog
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ rsyslogd-?[[:digit:]]+: action 'action 18' resumed \(module 'builtin:ompipe'\) \[try http://www.rsyslog.com/e/[[:digit:]]+ \]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ rsyslogd-?[[:digit:]]+: action 'action 18' suspended, next retry is .*\[try http://www.rsyslog.com/e/[[:digit:]]+ \].*$
+
+# Ansible
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ansible-.*$
+
+# SSH
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: Received disconnect from [0-9a-fA-F.:]+: 11: \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: error: Received disconnect from [0-9a-fA-F.:]+: 3: com.jcraft.jsch.JSchException: Auth fail \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshguard\[[[:digit:]]+\]: Reloading rotated file /var/log/auth.log.$
