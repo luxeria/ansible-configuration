@@ -1,7 +1,7 @@
 ---
 description: Access-Server (Jumphost, VPN, ...)
 responsible: emanuel
-ssh_allow_users: emanuel gandro guac nick peanut
+ssh_allow_users: emanuel gandro guac nick peanut cyrill
 users:
   - { name: "emanuel", groups: "sudo", ssh_key: "guac.pub" }
   - { name: "guac", groups: "sudo", ssh_key: "guac.pub" }
