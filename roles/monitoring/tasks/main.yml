@@ -42,3 +42,9 @@
 
 - name: Fix apt_all munin plugin
   lineinfile: dest=/etc/munin/plugins/apt_all state=present regexp='^my @releases = \("stable".*\);$' line='my @releases = ("stable");'
+
+- name: Install vnstat
+  apt: name=vnstat state=present
+
+- name: Enable vnstat
+  service: name=vnstat state=started enabled=yes
