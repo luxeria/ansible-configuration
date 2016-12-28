@@ -39,7 +39,7 @@
   when: ufw_allow_in is defined
 
 - name: Copy hosts file
-  template: src=files/hosts dest=/etc/hosts owner=root group=root mode=0644
+  copy: src=files/hosts dest=/etc/hosts owner=root group=root mode=0644
 
 - name: Copy motd file
   template: src=templates/motd.j2 dest=/etc/motd owner=root group=root mode=0644
