@@ -6,6 +6,9 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-timesyncd\[[[:digit:]]+\]: interval/delta/delay/jitter/drift ([0-9\.+-]+s/){4}\+[0-9]+ppm( ?\(ignored\))?$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-timesyncd\[[[:digit:]]+\]: interval/delta/delay/jitter/drift .*$
 
+# Systemd-Lgoind
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ systemd-logind\[[[:digit:]]+\]: New session [0-9]+ of user .*\.$
+
 # Rsyslog
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ rsyslogd-?[[:digit:]]+: action 'action 18' resumed \(module 'builtin:ompipe'\) \[try http://www.rsyslog.com/e/[[:digit:]]+ \]$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ rsyslogd-?[[:digit:]]+: action 'action 18' suspended, next retry is .*\[try http://www.rsyslog.com/e/[[:digit:]]+ \].*$
@@ -14,9 +17,23 @@
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ ansible-.*$
 
 # SSH
-^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: Received disconnect from [0-9a-fA-F.:]+: 11: \[preauth\]$
-^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: error: Received disconnect from [0-9a-fA-F.:]+: 3: com.jcraft.jsch.JSchException: Auth fail \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: Bad protocol version identification .* from [:.[:xdigit:]]+ port [0-9]+$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: error: connect_to .* port .*: failed.$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: fatal: Read from socket failed: Connection reset by peer \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: fatal: no matching cipher found: client .* server .* \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd[[[:digit:]]+\]: fatal: no matching mac found: client .* server .* \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: (error: )?Received disconnect from [:.[:xdigit:]]+: 3: com.jcraft.jsch.JSchException: Auth fail \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Received disconnect from [:.[:xdigit:]]+: 11:  \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Received disconnect from [:.[:xdigit:]]+: 11: (disconnect)? \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshd\[[[:digit:]]+\]: Received disconnect from [:.[:xdigit:]]+: 11: Normal Shutdown, Thank you for playing \[preauth\]$
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshguard\[[[:digit:]]+\]: Blocking [0-9a-fA-F.:]+ for .*$
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ sshguard\[[[:digit:]]+\]: Reloading rotated file /var/log/auth.log.$
 
 # UFW
 ^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ kernel: \[[0-9.]+\] \[UFW BLOCK\] IN=.*$
+
+# Postfix
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ postfix[/smtpd[[:digit:]]+\]: warning: hostname .* does not resolve to address .*: Name or service not known$
+
+# Named
+^\w{3} [ :[:digit:]]{11} [._[:alnum:]-]+ named[[[:digit:]]+\]: client [:.[:xdigit:]]+#[0-9]+ \(.*\): query \(cache\) '.*' denied$
