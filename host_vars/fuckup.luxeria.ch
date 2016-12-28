@@ -1,7 +1,7 @@
 ---
 description: Mänus private Büchse
 responsible: emanuel
-ssh_allow_users: rsnapshot emanuel nick
+ssh_allow_users: rsnapshot zoepfe emanuel nick
 ufw_allow_in:
   - { port: 1194, proto: "udp" }
 users:
