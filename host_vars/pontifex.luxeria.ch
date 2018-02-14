@@ -7,6 +7,6 @@ users:
   - { name: "zoepfe", groups: "sudo", ssh_key: "zoepfe.pub" }
   - { name: "guac", groups: "sudo", ssh_key: "guac.pub" }
   - { name: "peanut", groups: "sudo", ssh_key: "peanut.pub" }
-  - { name: "roli", groups: "sudo", ssh_key:"roli.pub" } 
+  - { name: "roli", groups: "sudo", ssh_key: "roli.pub" } 
 ufw_allow_in:
   - { port: 22, proto: "tcp" }
