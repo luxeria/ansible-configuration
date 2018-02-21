@@ -70,8 +70,20 @@
     - acmetiny.timer
 
 - name: Reload systemd deamon
-  command: /bin/systemctl daemon-reload
+  systemd: daemon_reload=yes
   when: acmetiny_service.changed
+
+- name: Renew certificates
+  systemd:
+    name: acmetiny
+    state: started
+  when: csr_config.changed
+
+- name: Enable monthly timer for certificate renewal
+  systemd:
+    name: acmetiny.timer
+    state: started
+    enabled: True
 
 - name: Copy nginx HTTPS configuration file
   copy: src=https.conf dest=/etc/nginx/site.d/https.conf
