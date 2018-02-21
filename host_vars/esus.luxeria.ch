@@ -18,3 +18,6 @@ nginx_https_cert:
   location: "Adligenswil"
   organization: "Luxeria"
   common_name: "public.luxeria.ch"
+nginx_proxy:
+  - { vhost: "public.luxeria.ch", dest: "http://www.luxeria.ch/" }
+  - { vhost: "gitlab.luxeria.ch", dest: "http://pontifex/" }
