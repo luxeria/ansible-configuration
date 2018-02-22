@@ -10,3 +10,4 @@ users:
   - { name: "roli", groups: "sudo", ssh_key: "roli.pub" } 
 ufw_allow_in:
   - { port: 22, proto: "tcp" }
+  - { port: 80, proto: "tcp" } 
