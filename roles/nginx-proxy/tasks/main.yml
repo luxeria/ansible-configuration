@@ -1,0 +1,4 @@
+---
+- name: Generate conf.d/default.conf for reverse-proxy
+  template: src=proxy.conf dest=/etc/nginx/conf.d/default.conf
+  notify: reload nginx
