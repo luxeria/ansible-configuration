@@ -16,7 +16,6 @@ ff02::2        ip6-allrouters
 10.10.0.102    barrex.luxeria.ch              barrex
 10.10.0.10     caturix.luxeria.ch             caturix
 10.10.0.103    coel.luxeria.ch                coel
-10.10.0.100    debian8-template.luxeria.ch    debian8-template
 10.10.0.100    debian-template.luxeria.ch     debian-template
 10.10.0.104    divanno.luxeria.ch             divanno
 10.10.0.105    esus.luxeria.ch                esus
