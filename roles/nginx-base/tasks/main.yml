@@ -13,8 +13,6 @@
 
 - name: Undo nginx `postinst` configuration
   script: nginx-undo-postinst.sh
-  register: script_result
-  changed_when: "script_result.stdout"
 
 - name: Create /etc/nginx subdirectories
   file: path={{item}} state=directory
