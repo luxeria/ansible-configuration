@@ -9,7 +9,7 @@
    - 'deb-src http://packages.dotdeb.org'
 
 - name: Install nginx
-  apt: name=nginx-light=1.12.* state=present update_cache=yes
+  apt: name=nginx-light=1.14.* state=present update_cache=yes
 
 - name: Undo nginx `postinst` configuration
   script: nginx-undo-postinst.sh
