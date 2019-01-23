@@ -4,3 +4,6 @@ Description=Renew our Let's Encrypt certificate every month
 [Timer]
 OnCalendar=monthly
 Persistent=true
+
+[Install]
+WantedBy=timers.target
