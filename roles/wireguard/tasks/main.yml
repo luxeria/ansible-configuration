@@ -1,0 +1,70 @@
+---
+- name: Add Debian unstable repository
+  apt_repository: repo='deb http://deb.debian.org/debian/ unstable main'
+
+- name: Set low priority for unstable packages
+  copy:
+    dest: "/etc/apt/preferences.d/limit-unstable"
+    content: |
+      Package: *
+      Pin: release a=unstable
+      Pin-Priority: 90
+
+- name: Install Wireguard
+  apt: name=wireguard state=present update_cache=yes
+
+- name: Create /etc/wireguard directory
+  file:
+    path: /etc/wireguard
+    state: directory
+    mode: 0700
+
+# you can use a predefined private key by setting the `wireguard_server_privkey` var
+- name: Generate Wireguard Server Private Key File
+  shell: |
+    umask 077 && \
+    wg genkey | \
+    tee /etc/wireguard/server-private.key | \
+    wg pubkey > /etc/wireguard/server-public.key
+  args:
+    creates: /etc/wireguard/server-private.key
+  when: wireguard_server_privkey is undefined
+
+- name: (Alternatively) Create Wireguard Server Private Key File from Variable
+  shell: |
+    umask 077 && \
+    echo {{ wireguard_server_privkey }} | \
+    tee /etc/wireguard/server-private.key | \
+    wg pubkey > /etc/wireguard/server-public.key
+  args:
+    creates: /etc/wireguard/server-private.key
+  when: wireguard_server_privkey is defined
+
+- name: Read Wireguard Server Private Key
+  slurp:
+    src: /etc/wireguard/server-private.key
+  register: wireguard_server_privkey_encoded
+
+- name: Read Wireguard Server Public Key
+  slurp:
+    src: /etc/wireguard/server-public.key
+  register: wireguard_server_pubkey_encoded
+
+- name: Set Wireguard Server Keys as Facts
+  set_fact:
+    wireguard_server_privkey: '{{ wireguard_server_privkey_encoded.content | b64decode | trim }}'
+    wireguard_server_pubkey: '{{ wireguard_server_pubkey_encoded.content | b64decode | trim }}'
+
+- name: Generate /etc/wireguard/wg0.conf
+  template: src=wg0.conf dest=/etc/wireguard/wg0.conf mode=0600
+  notify: reload wg-quick@wg0
+
+- name: Start and Enable Wireguard (wg-quick@wg0)
+  systemd:
+    name: wg-quick@wg0
+    state: started
+    enabled: yes
+
+- name: Displaying WireGuard Server Public Key
+  debug:
+    var: wireguard_server_pubkey
