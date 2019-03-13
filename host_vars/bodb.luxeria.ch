@@ -8,6 +8,6 @@ users:
   - { name: "guac", groups: "sudo", ssh_key: "guac.pub" }
   - { name: "peanut", groups: "sudo", ssh_key: "peanut.pub" }
   - { name: "cyrill", groups: "sudo", ssh_key: "cyrill.pub" }
-  - { name: "hops", groups: "", ssh_key: "hops.pub" }
+  - { name: "hops", groups: "sudo", ssh_key: "hops.pub" }
 ufw_allow_in:
   - { port: 22, proto: "tcp" }

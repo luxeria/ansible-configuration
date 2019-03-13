@@ -10,6 +10,6 @@ users:
   - { name: "gandro", groups: "", ssh_key: "gandro.pub" }
   - { name: "nick", groups: "", ssh_key: "nick.pub" }
   - { name: "cyrill", groups: "", ssh_key: "cyrill.pub" }
-  - { name: "hops", groups: "", ssh_key: "hops.pub" }
+  - { name: "hops", groups: "sudo", ssh_key: "hops.pub" }
 ufw_allow_in:
   - { port: 22, proto: "tcp" }
