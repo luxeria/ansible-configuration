@@ -17,6 +17,14 @@
     reload: yes
   when: wireguard_server_enable_forwarding | default('true')
 
+- name: set UFW default forward policy to ACCEPT
+  lineinfile:
+    dest: /etc/default/ufw
+    line: DEFAULT_FORWARD_POLICY="ACCEPT"
+    regexp: "^DEFAULT_FORWARD_POLICY\\="
+  notify: reload ufw
+  when: wireguard_server_enable_forwarding | default('true')
+
 - name: Add Debian unstable repository
   apt_repository: repo='deb http://deb.debian.org/debian/ unstable main'
 

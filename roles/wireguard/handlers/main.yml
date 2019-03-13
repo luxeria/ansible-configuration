@@ -4,3 +4,5 @@
     name: wg-quick@wg0
     state: restarted
     enabled: yes
+- name: reload ufw
+  command: ufw reload

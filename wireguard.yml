@@ -1,0 +1,7 @@
+---
+- name: Install WireGuard Server
+  hosts: cucullatus.luxeria.ch
+  become: yes
+
+  roles:
+    - wireguard
