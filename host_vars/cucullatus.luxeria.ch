@@ -9,7 +9,6 @@ users:
 ufw_allow_in:
   - { port: 22, proto: "tcp" }
   - { port: 51820, proto: "udp" }
-wireguard_server_address: 10.10.0.200/32
 wireguard_server_port: 51820
 wireguard_peers:
   - name: gandro
