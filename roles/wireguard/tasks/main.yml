@@ -8,9 +8,9 @@
     reload: yes
   when: wireguard_server_enable_forwarding | default('true')
 
-- name: Enable IPv6 Forwarding
+- name: Enable IPv4 Proxy ARP
   sysctl:
-    name: net.ipv6.conf.all.forwarding
+    name: net.ipv4.conf.all.proxy_arp
     value: 1
     sysctl_set: yes
     state: present
