@@ -11,6 +11,9 @@ ufw_allow_in:
   - { port: 51820, proto: "udp" }
 wireguard_server_port: 51820
 wireguard_peers:
+  - name: doorbell
+    public_key: "pGeQ56OwLN2CAxBqRbIHqQsraF/l9KKsfHE/pAtxAT8="
+    allowed_ips: "10.10.0.200"
   - name: gandro
     public_key: "ZAVdTiIsjpP/kD4k4SYyvhlz45d/ItKLqJhtpEmuuyA="
     allowed_ips: "10.10.0.201"
