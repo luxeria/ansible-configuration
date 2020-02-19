@@ -20,3 +20,9 @@ wireguard_peers:
   - name: hops
     public_key: "IfmHPk6Ed/C4cPEeZLSHQfUbE0aUjXbTcbJx9NhFHXs="
     allowed_ips: "10.10.0.202"
+  - name: daniw_elitebook
+    public_key: "AcB+v/9njn/XZ+ULyP/z8uxKEevkVPGoyyA2Atahczo="
+    allowed_ips: "10.10.0.203"
+  - name: daniw_raspi_weewx
+    public_key: "2N4LaHcBqJb0oJPFsafV6jk/CiWxtMj9y1levBF6wVY="
+    allowed_ips: "10.10.0.204"
