@@ -24,5 +24,5 @@ wireguard_peers:
     public_key: "AcB+v/9njn/XZ+ULyP/z8uxKEevkVPGoyyA2Atahczo="
     allowed_ips: "10.10.0.203"
   - name: daniw_raspi_weewx
-    public_key: "2N4LaHcBqJb0oJPFsafV6jk/CiWxtMj9y1levBF6wVY="
+    public_key: "dOdIRAtcl9xq95C9jY0qs+REtebRfmE2z7y18EOa1mA="
     allowed_ips: "10.10.0.204"
