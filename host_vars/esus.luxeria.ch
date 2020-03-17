@@ -19,9 +19,9 @@ nginx_https_cert:
   location: "Adligenswil"
   organization: "Luxeria"
   common_name: "public.luxeria.ch"
-  alt_names: ["gitlab.luxeria.ch", "door.luxeria.ch"]
+  alt_names: ["gitlab.luxeria.ch", "door.luxeria.ch", "meet.luxeria.ch"]
 nginx_proxy:
   - { vhost: "public.luxeria.ch", dest: "http://www.luxeria.ch/", forward_host: false }
   - { vhost: "gitlab.luxeria.ch", dest: "http://pontifex/" }
   - { vhost: "door.luxeria.ch", dest: "http://10.10.0.200:8080/" }
-  - { vhost: "meet.luxeria.ch", dest: "http://10.10.0.125:80/" }
+  - { vhost: "meet.luxeria.ch", dest: "https://10.10.0.125:443/", insecure_ssl: true }
