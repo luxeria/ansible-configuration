@@ -13,6 +13,8 @@ users:
 ufw_allow_in:
   - { port: 80, proto: "tcp" }
   - { port: 443, proto: "tcp" }
+  - { port: 10000:20000, proto: "udp"}
+
 nginx_https_cert:
   country: "CH"
   state: "Luzern"
