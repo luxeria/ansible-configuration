@@ -8,5 +8,6 @@ users:
   - { name: "guac", groups: "sudo,libvirt", ssh_key: "guac.pub" }
   - { name: "peanut", groups: "sudo,libvirt", ssh_key: "peanut.pub" }
   - { name: "hops", groups: "sudo,libvirt", ssh_key: "hops.pub" }
+  - { name: "gandro", groups: "sudo.libvirt", ssh_key: "gandro.pub" }
 ufw_allow_in:
   - { port: 22, proto: "tcp" }
