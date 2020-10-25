@@ -24,5 +24,12 @@ wireguard_peers:
     public_key: "AcB+v/9njn/XZ+ULyP/z8uxKEevkVPGoyyA2Atahczo="
     allowed_ips: "10.10.0.203"
   - name: daniw_raspi_weewx
-    public_key: "dOdIRAtcl9xq95C9jY0qs+REtebRfmE2z7y18EOa1mA="
+    public_key: "VsnPqz28aCRtsiF1lPvGXHz5R3RXAWRK5H1rSh9Nngo="
     allowed_ips: "10.10.0.204"
+  - name: stefan_dell
+    public_key: "yB0IzExQF9u/QsqtmO7Z0rBls3shbtYw43uv38FuBQo="
+    allowed_ips: "10.10.0.205"
+  - name: daniw_desktop
+    public_key: "BKsME22t4e940Vs7JNnn/GjqCRb5Hatw8vrRiaZSwhQ="
+    allowed_ips: "10.10.0.206"
+    
