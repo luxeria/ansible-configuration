@@ -15,7 +15,7 @@ wireguard_peers:
     public_key: "pGeQ56OwLN2CAxBqRbIHqQsraF/l9KKsfHE/pAtxAT8="
     allowed_ips: "10.10.0.200"
   - name: gandro
-    public_key: "ZAVdTiIsjpP/kD4k4SYyvhlz45d/ItKLqJhtpEmuuyA="
+    public_key: "/2WNhRNI2sN9BxGRwIkF/h2FMHWxhgHBeCYzjrr0lAU="
     allowed_ips: "10.10.0.201"
   - name: hops
     public_key: "IfmHPk6Ed/C4cPEeZLSHQfUbE0aUjXbTcbJx9NhFHXs="
