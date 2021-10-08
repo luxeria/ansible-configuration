@@ -32,4 +32,6 @@ wireguard_peers:
   - name: daniw_desktop
     public_key: "BKsME22t4e940Vs7JNnn/GjqCRb5Hatw8vrRiaZSwhQ="
     allowed_ips: "10.10.0.206"
-    
+  - name: daniw_phone
+    public_key: "Mz4rwhpTdroDuLHGp5Vq+ys5AcYOa86e3bjjkt/UFik="
+    allowed_ips: "10.10.0.207"
