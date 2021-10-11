@@ -35,3 +35,6 @@ wireguard_peers:
   - name: daniw_phone
     public_key: "Mz4rwhpTdroDuLHGp5Vq+ys5AcYOa86e3bjjkt/UFik="
     allowed_ips: "10.10.0.207"
+  - name: stefan_phone
+    public_key: "BzmAbqChR0Cw1AEf+f3fI9U0m8hSZF20vwATm3HuBH8="
+    allowed_ips: "10.10.0.208"
